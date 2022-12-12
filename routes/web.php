@@ -32,18 +32,23 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('fill', [\App\Http\Controllers\CrudController::class, 'getoffers' ]); 
 Route::get('fill2', [\App\Http\Controllers\CrudController::class, 'getusers' ]);
 
-Route::group(['prefix'=>'offers'],function(){
-    Route::group([
-        'prefix' => LaravelLocalization::setLocale()], function(){
-        
 
-    Route::get('store',[CrudController::class,'store']);  //  offers/store
-
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),  //{lang}/index	  to select the language
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ] //middlewares
+],
+function(){  
+// Route::group(['perfix'=> 'offers'], function(){
 
     Route::get('index',[CrudController::class,'index']);    // call function that view the form
-    Route::post('insert', [CrudController::class,'insert'])->name('offers.insert'); //insert into database
-    
-});
-});
+        Route::get('store',[CrudController::class,'store']);  //  offers/store
+        Route::post('insert', [CrudController::class,'insert'])->name('offers.insert'); //insert into database
+    });
+// });
 
+
+// Route::get('nav', function(){
+//     return view('layouts.navbar');
+    
+// });
 
