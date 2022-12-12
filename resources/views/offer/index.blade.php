@@ -18,21 +18,22 @@
         {{-- The token for security by laravel --}}
         {{-- <input name="_token" value="{{csrf_token()}}" > --}}
         @csrf   
-        <h1>Offers</h1>
+        {{-- to translate the word offers ('file_translation.word') --}}
+        <h1> {{__('messages.Offers')}}</h1>   
         {{-- simple alert if success to insert , success is a redirect when insert data ->with()--}}
         @if(Session::has('success')) 
         <div class="alert alert-success" role="alert" style="border: 10px; color: aqua">{{Session::get('success')}}</div>
         @endif
-        <input type="text" name="offer" id="inp1" placeholder="Your Offer"> <br>
+        <input type="text" name="offer" id="inp1" placeholder="{{__('messages.Your Offer')}}"> <br>
         @error('offer')
         <small style="color: darkred; font-size: 15px" id="e">{{$message}}</small>  {{--validate error in form instead of function in controller --}}
         @enderror <br>
-        <input type="text" name="price" id="inp1" placeholder="Price" style="margin-top: 30px"><br>
+        <input type="text" name="price" id="inp1" placeholder="{{__('messages.Price')}}" style="margin-top: 30px"><br>
         @error('price')
         <small style="color: darkred; font-size: 15px" class="form-text text-danger">{{$message}}</small>
         @enderror
         
-        <p><b>You are about to insert a new column <br> Please click submit <br></b><button>Submit</button></p> <br>
+        <p><b>{{__("messages.You are about to insert a new column")}} <br> {{__('messages.Please click submit')}} <br></b><button>{{__('messages.Submit')}}</button></p> <br>
     </form>
 </body>
 </html>
