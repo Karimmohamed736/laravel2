@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CrudController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +25,17 @@ Auth::routes(['verify'=>true]);   //verify the email
 
 //Login home
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified'); //verified email
+
+
+//call the function getoffers that show the database of table
+Route::get('fill', [\App\Http\Controllers\CrudController::class, 'getoffers' ]); 
+Route::get('fill2', [\App\Http\Controllers\CrudController::class, 'getusers' ]);
+
+Route::group(['prefix'=>'offers'],function(){
+    Route::get('store',[CrudController::class,'store']);  //  offers/store
+
+    Route::get('index',[CrudController::class,'index']);    // call function that view the form
+    Route::post('insert', [CrudController::class,'insert'])->name('offers.insert'); //insert into database
+});
+
+
