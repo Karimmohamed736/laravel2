@@ -40,15 +40,26 @@ Route::group([
 function(){  
 // Route::group(['perfix'=> 'offers'], function(){
 
-    Route::get('index',[CrudController::class,'index']);    // call function that view the form
+    Route::get('index',[CrudController::class,'form']);    // call function that view the form
         Route::get('store',[CrudController::class,'store']);  //  offers/store
         Route::post('insert', [CrudController::class,'insert'])->name('offers.insert'); //insert into database
-    });
-// });
 
 
-// Route::get('nav', function(){
-//     return view('layouts.navbar');
+//Crud operation
+    //show the DB
+    Route::get('all',[CrudController::class,'index']);  
+
+    //Update
+    Route::get('edit/{offer_id}', [CrudController::class,'EditOffer'])->name('offer.edit');  //get the form edit by id
+    Route::post('update/{offer_id}', [CrudController::class,'UpdateOffer'])->name('offers.update'); //insert the new update
     
+    
+
+
+
+
+});
 // });
+
+
 

@@ -12,32 +12,31 @@
 </head>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 <style>form{background-image: url("OIP\ \(1\).jpg");text-align: center;margin: 2% auto 0;background-repeat: no-repeat;background-size: cover;}h1{ color: white;}body{background-image: url("R.jpg");background-color: teal}#inp1{padding: 5px;border-radius: 10px;border: 2px solid white ;}#a1{text-decoration: none;color: aliceblue;}#a2{color: lightskyblue;}button{margin-top: 20px;margin-bottom: 10px;background-color: darkgoldenrod;padding: 5px 50px;border-radius: 10px;}p{color: white;}</style>
-
+{{-- @dd($offer) --}}
 <body>
-    <form action="{{route('offers.insert')}}" method="POST">  
-        {{-- The token for security by laravel --}}
-        {{-- <input name="_token" value="{{csrf_token()}}" > --}}
+    {{-- search for route by name of offers.update + selected id --}}
+    <form method="POST" action="{{ route('offers.update' , $offer->id)}}"> 
         @csrf   
-        {{-- to translate the word offers ('file_translation.word') --}}
-        <h1> {{__('messages.Offers')}}</h1>   
+        {{-- <input type="hidden" name="test" value="{{$offer->id}}"> --}}
+        <h1> {{__('messages.Update')}}</h1>   
         {{-- simple alert if success to insert , success is a redirect when insert data ->with()--}}
         @if(Session::has('success')) 
         <div class="alert alert-success" role="alert" style="border: 10px; color: teal">{{Session::get('success')}}</div>
         @endif
-
-        <input type="text" name="offer_ar" id="inp1" placeholder="{{__('messages.Your Offer ar')}}"> <br>
+                                                    {{--by compact in crudcontroller  --}}
+        <input type="text" name="name_ar" value="{{$offer->name_ar}}" id="inp1" placeholder="{{__('messages.Your Offer ar')}}"> <br>
         @error('offer_ar')
         <small style="color: darkred; font-size: 15px" id="e">{{$message}}</small>  {{--validate error in form instead of function in controller --}}
         @enderror <br>
 
-        <input type="text" name="offer_en" id="inp1" placeholder="{{__('messages.Your Offer en')}}"> <br>
+        <input type="text" name="name_en" value="{{$offer->name_en}}"  id="inp1" placeholder="{{__('messages.Your Offer en')}}"> <br>
         @error('offer_en')
         <small style="color: darkred; font-size: 15px" id="e">{{$message}}</small>  
         @enderror <br>
 
 
 
-        <input type="text" name="price" id="inp1" placeholder="{{__('messages.Price')}}" style="margin-top: 30px"><br>
+        <input type="text" name="price" value="{{$offer->price}}" id="inp1" placeholder="{{__('messages.Price')}}" style="margin-top: 30px"><br>
         @error('price')
         <small style="color: darkred; font-size: 15px" class="form-text text-danger">{{$message}}</small>
         @enderror
