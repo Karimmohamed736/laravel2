@@ -14,7 +14,8 @@
 <style>form{background-image: url("OIP\ \(1\).jpg");text-align: center;margin: 2% auto 0;background-repeat: no-repeat;background-size: cover;}h1{ color: white;}body{background-image: url("R.jpg");background-color: teal}#inp1{padding: 5px;border-radius: 10px;border: 2px solid white ;}#a1{text-decoration: none;color: aliceblue;}#a2{color: lightskyblue;}button{margin-top: 20px;margin-bottom: 10px;background-color: darkgoldenrod;padding: 5px 50px;border-radius: 10px;}p{color: white;}</style>
 
 <body>
-    <form action="{{route('offers.insert')}}" method="POST">  
+                                                                    {{-- to allow form to upload files --}}
+    <form action="{{route('offers.insert')}}" method="POST" enctype="multipart/form-data">   
         {{-- The token for security by laravel --}}
         {{-- <input name="_token" value="{{csrf_token()}}" > --}}
         @csrf   
@@ -24,6 +25,11 @@
         @if(Session::has('success')) 
         <div class="alert alert-success" role="alert" style="border: 10px; color: teal">{{Session::get('success')}}</div>
         @endif
+
+        <input type="file" name="photo" id="inp1"> <br>
+        @error('photo')
+        <small style="color: darkred; font-size: 15px" id="e">{{$message}}</small>  {{--validate error in form instead of function in controller --}}
+        @enderror <br> 
 
         <input type="text" name="offer_ar" id="inp1" placeholder="{{__('messages.Your Offer ar')}}"> <br>
         @error('offer_ar')

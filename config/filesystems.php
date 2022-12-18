@@ -43,6 +43,14 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        //to store images
+        'offers' => [
+            'driver' => 'local',
+            'root' => storage_path('public/images/offers/'),
+            'url' => env('APP_URL').'/public',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
 
         's3' => [
             'driver' => 's3',

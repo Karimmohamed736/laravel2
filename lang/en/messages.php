@@ -22,4 +22,5 @@ return[
     "Actions"=>"Actions",
     "Edit"=>"Edit",
     "Update"=>"Update",
+    "Missing inputs"=>"Missing inputs",
 ];

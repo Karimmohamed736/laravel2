@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OfferRequest;
 use App\Models\Offer;
 use App\Models\User;
+use App\Traits\OfferTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class CrudController extends Controller
 {
+
+use OfferTrait;  //use trait to call its functions
+    
     public function getoffers(){
 
        return Offer::get();  //return all columns
@@ -37,16 +41,20 @@ class CrudController extends Controller
 
     public function insert(OfferRequest $req){ //in create offer
 
+        $file_name = $this->SaveImage($req->photo, 'images/offers');
         Offer::create([         //send the data u enter in form (by name of inputs in index blade)
-            'name_ar'=> $req -> offer_ar,       //'column'=> request-> input   to send to DB
-            'name_en'=> $req -> offer_en,
-            'price'=> $req -> price,
+            'photo'=>$file_name, //add name of photo
+            'name_ar'=> $req ->offer_ar,       //'column'=> request-> input   to send to DB
+            'name_en'=> $req ->offer_en,
+            'price'=> $req ->price,
         ]);
         return redirect()->back()->with(['success'=>'This is a success alert-check it now!']); //redirect to the view with message after inserted
         // return view('offer/index');
 
 
     }
+    
+
     //for calling the messages (for best developing)
     // protected function getmessages(){
     //     return ['offer.required'=> __('messages.please insert your offer'),  //to translate the message into page language that appear in lang/ar/messages

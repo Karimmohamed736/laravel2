@@ -22,4 +22,6 @@ return[
     "Actions"=> "العمليات",
     "Edit"=>"تعديل",
     "Update"=>"تعديل العرض",
+    "Missing inputs"=>"بيانات ناقصه",
+    "No file chosen"=> "اختار ملف",
 ];

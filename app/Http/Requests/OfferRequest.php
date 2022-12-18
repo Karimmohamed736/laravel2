@@ -24,8 +24,8 @@ class OfferRequest extends FormRequest
     public function rules()  //method to do the validation and make rules
     {
         return [
-            'name_ar' =>'required|max:100|unique:offers,name_ar',   // 'inputs'=>'validate:table,column'
-            'name_en' =>'required|max:100|unique:offers,name_en',   // 'inputs'=>'validate:table,column'
+            'offer_ar' =>'required|max:100|unique:offers,name_ar',   // 'inputs'=>'validate:table,column'
+            'offer_en' =>'required|max:100|unique:offers,name_en',   // 'inputs'=>'validate:table,column'
             'price'=>'required'
         ];
     }
@@ -36,6 +36,7 @@ class OfferRequest extends FormRequest
         'name_ar.required'=> __('messages.please insert your offer'),  //to translate the message into page language that appear in lang/ar/messages
         'name_en.required'=> __('messages.please insert your offer'),    
         'price'=> trans('messages.insert the price first'),
+        'photo'=> __('message.Missing inputs'),
     ];
     }
 }
