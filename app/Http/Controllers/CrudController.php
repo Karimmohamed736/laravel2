@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\VideoViewer;
 use App\Http\Requests\OfferRequest;
 use App\Models\Offer;
 use App\Models\User;
+use App\Models\Video;
 use App\Traits\OfferTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -108,8 +110,29 @@ use OfferTrait;  //use trait to call its functions
         
         //update the data
         $offer->update($req->all());
-        return redirect()->back()->with(['success'=>"updated successfully"]);
+        return redirect()->back()->with(['success'=>__('messages.updated successfully')]);
         
     }
+    
+    public function DeleteOffer($offer_id){
+        //check
+        $offer = Offer::find($offer_id);
+        if (!$offer) {
+            return redirect()->back()->with(['error' => __('messages.Id not found')]);
+        }
+
+        $offer->delete(); //delete method
+        return redirect()-> route('offer.all') ->with(['success'=> __('messages.Deleted successfully')]);
+    }
+
+    public function getVideo(){
+         //to show the view that have event listener with first video in DB
+        $video = Video::first();
+        event(new VideoViewer($video)); //finally, method to fire the event 
+        return view('video')-> with('video', $video); //to call the var come from DB in view
+
+        //after fonish we add the class of event and the listener in EventService in provider folder
+    }
+    
 }
     

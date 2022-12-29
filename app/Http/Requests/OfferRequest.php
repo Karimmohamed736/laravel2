@@ -24,8 +24,8 @@ class OfferRequest extends FormRequest
     public function rules()  //method to do the validation and make rules
     {
         return [
-            'offer_ar' =>'required|max:100|unique:offers,name_ar',   // 'inputs'=>'validate:table,column'
-            'offer_en' =>'required|max:100|unique:offers,name_en',   // 'inputs'=>'validate:table,column'
+            'offer_ar' =>'max:100|unique:offers,name_ar',   // 'inputs'=>'validate:table,column'
+            'offer_en' =>'max:100|unique:offers,name_en',   // 'inputs'=>'validate:table,column'
             'price'=>'required'
         ];
     }
