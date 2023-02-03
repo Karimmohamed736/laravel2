@@ -22,6 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'mobile',   //here we add the new row we created
         'expire',
+        'age',
     ];
 
     protected $hidden = [

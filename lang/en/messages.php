@@ -23,4 +23,8 @@ return[
     "Edit"=>"Edit",
     "Update"=>"Update",
     "Missing inputs"=>"Missing inputs",
+    "Delete"=> "Delete",
+    "Id not found"=>"Id not found",
+    "updated successfully"=>"updated successfully",
+    "Deleted successfully"=>"Deleted successfully",
 ];

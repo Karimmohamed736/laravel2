@@ -19,18 +19,18 @@
         @csrf   
         {{-- <input type="hidden" name="test" value="{{$offer->id}}"> --}}
         <h1> {{__('messages.Update')}}</h1>   
-        {{-- simple alert if success to insert , success is a redirect when insert data ->with()--}}
+        {{-- simple alert if success to insert , success is a redirect when insert data ->with() in controller--}}
         @if(Session::has('success')) 
         <div class="alert alert-success" role="alert" style="border: 10px; color: teal">{{Session::get('success')}}</div>
         @endif
                                                     {{--by compact in crudcontroller  --}}
         <input type="text" name="name_ar" value="{{$offer->name_ar}}" id="inp1" placeholder="{{__('messages.Your Offer ar')}}"> <br>
-        @error('offer_ar')
+        @error('name_ar')
         <small style="color: darkred; font-size: 15px" id="e">{{$message}}</small>  {{--validate error in form instead of function in controller --}}
         @enderror <br>
 
         <input type="text" name="name_en" value="{{$offer->name_en}}"  id="inp1" placeholder="{{__('messages.Your Offer en')}}"> <br>
-        @error('offer_en')
+        @error('name_en')
         <small style="color: darkred; font-size: 15px" id="e">{{$message}}</small>  
         @enderror <br>
 

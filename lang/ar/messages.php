@@ -24,4 +24,8 @@ return[
     "Update"=>"تعديل العرض",
     "Missing inputs"=>"بيانات ناقصه",
     "No file chosen"=> "اختار ملف",
+    "Delete"=> "حذف",
+    "Id not found"=> "خطأ في تعريف البيانات",
+    "updated successfully"=> "تم العديل بنجاح",
+    "Deleted successfully"=> "تم الحذف بنجاح",
 ];

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CrudController;
+use App\Http\Controllers\CustomeAuthController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -47,19 +48,27 @@ function(){
 
 //Crud operation
     //show the DB
-    Route::get('all',[CrudController::class,'index']);  
+    Route::get('all',[CrudController::class,'index'])->name('offer.all');  
 
     //Update
     Route::get('edit/{offer_id}', [CrudController::class,'EditOffer'])->name('offer.edit');  //get the form edit by id
     Route::post('update/{offer_id}', [CrudController::class,'UpdateOffer'])->name('offers.update'); //insert the new update
     
+    //Delete
+    Route::get('delete/{offer_id}',[CrudController::class,'DeleteOffer'])->name('offer.delete');
     
-
-
-
+//event listener
+    Route::get('youtube',[CrudController::class,'getVideo']);
 
 });
-// });
+Route::get('/dash', function () {
+    return 'Not allowed';
+})->name('dash');
 
+#########################    Authentication and Guards     ###################
+//route for middleware for the adults people
+Route::group(['middleware'=>'CheckAge'], function () {
+    Route::get('adult', [CustomeAuthController::class,'adult'])->name('auth'); 
+});
 
 
